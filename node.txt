@@ -1325,3 +1325,176 @@ export class BookGetComponent implements OnInit {
 
   </tbody>
 </table>
+============================
+
+===========================================================================================================
+backend __ (mean)
+============================================================================================================
+Package Install:
+------------------------
+npm init
+npm install body-parser
+npm install cors
+npm install express
+npm install mongoose
+npm install nodemon
+------------------------
+
+Folder Structure:
+_________________
+Backend
+Controller
+    -bookController.js
+Models
+     -book.js
+db.js
+index.js
+
+--------------------------
+package_jason
+
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongoose": "^6.1.1",
+    "nodemon": "^2.0.15"
+  }
+}
+
+----------------------------
+
+db.js
+
+-------------
+
+const mongoose = require('mongoose');
+	mongoose.connect('mongodb://localhost:27017/BookDB', (err) => {
+    	if (!err)
+    		console.log('MongoDB connection succeeded.');
+    	else
+    		console.log('Error in DB connection : ' + JSON.stringify(err, undefined, 2));
+	});
+
+	module.exports = mongoose;
+-----------------------------------------------------
+index.js
+----------------------------
+const express = require('express');
+	const bodyParser = require('body-parser');
+    var bookController = require('./Controller/bookController');
+	const { mongoose } = require('./db.js');
+
+	var app = express();
+
+    var cors = require('cors')
+
+app.use(cors())
+
+	app.use(bodyParser.json());
+    app.use('/Books', bookController);
+	app.listen(3000, () => console.log('Server started at port : 3000'));
+
+
+
+--------------------------------------------
+bookController.js
+-----------------
+const { json } = require('body-parser');
+const express = require('express');
+var router = express.Router();
+var ObjectId = require('mongoose').Types.ObjectId;
+
+var { Book } = require('../Models/book');
+
+router.post("/",function(req,res){	
+	//INSERT
+	console.log("INSERT");	
+	console.log(req.body)
+	var book1 = new Book({
+            name : req.body.name,
+            price : req.body.price,
+            quantity : req.body.quantity
+        }); 
+	book1.save(function (err, book) {
+	      if (err) return console.error(err);
+	      id=book._id;
+	      console.log(book._id + " saved to books collection.");	      
+	      res.status(200).send(book);
+	      //res.send(book._id + " saved to books collection.")
+    }); 
+})
+
+router.get("/",(req,res)=>{
+//Get all
+	Book.find(function (err, books) {
+  		if (err) return console.error(err);
+  		console.log(books);
+  		res.send(books);
+        //res.render("list",{booksList:books})
+	})
+});
+router.get("/:id",(req,res)=>{
+	//Get one req.params.id
+	Book.findById({"_id":req.params.id}, function (err, book) 
+	{
+        if (err) return res.status(500).send(
+        	"There was a problem finding.");
+        if (!book) return res.status(404).send(
+        	"No data found.");
+        res.status(200).send(book);
+    });
+});
+
+router.put("/:id",(req,res)=>{
+//UPDATE  req.params.id, req.body
+    Book.findOneAndUpdate({"_id":req.params.id}, req.body, 
+    	{new: true}, function (err, book) {
+        if (err) return res.status(500).send(
+        	"There was a problem updating.");
+        res.status(200).send(book);
+    });
+});
+
+router.delete("/:id",(req,res)=>{
+//DELETE req.params.id deleteOne() deleteMany() findOneAndRemove()
+	Book.findOneAndRemove({"_id":req.params.id},
+	 function (err, book) {
+		 
+        if (err) 
+		{
+			console.log("Delete ERROR");
+			return res.status(500).send(
+				"There was a problem deleting.");
+		}
+		console.log("Deleted")
+        res.status(200).send();
+    });
+});
+
+module.exports = router;
+
+----------------------------------------------------
+book.js
+----------------------------
+const mongoose = require('mongoose');
+
+	var Book = mongoose.model('bookMaster', {
+	    name: {type: String},
+	    price: {type: Number},
+	    quantity: {type: Number}
+	});
+	module.exports = { Book };
+    
+	
+========================================================================================================================
