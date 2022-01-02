@@ -197,7 +197,7 @@ AngularApp front end
 
 	For creating new angular cli app: ng new AngularApp
 
-	installing typescript: npm install -g typescript  (for installing particular version: write @4.4.2 at the end like typescript@4.4.2)
+	installing typescript: npm install -g typescript@4.4.2  (for installing particular version: write @4.4.2 at the end like typescript@4.4.2)
 	For checking the version of typescript: tsc -v
 	For changing typescript version: npm i -D typescript@4.4.2 (write version which is first visible in the condition like 4.4.2=> version <=4.5)
 	For starting Angular App: ng server --open
