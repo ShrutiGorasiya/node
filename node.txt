@@ -2,13 +2,21 @@
 ===========npm init(not forgot)====
 express mongoose
 
-ejs
-express
-express-fileupload
-jsonwebtoken
-mongoose
-nodemon
-
+npm install ejs
+npm install express
+npm install express-fileupload
+npm install jsonwebtoken
+npm install mongoose
+npm install nodemon
+============================f structure================
+public 
+     -images
+Views
+     -display.ejs
+     -insert.ejs
+     -update.ejs
+index.js
+=======================================================
 
 ===make one images folder in public====
 index.js
