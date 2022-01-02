@@ -196,6 +196,7 @@ AngularApp front end
   -------Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 
 	For creating new angular cli app: ng new AngularApp
+        cd AngularApp
 
 	installing typescript: npm install -g typescript@4.4.2  (for installing particular version: write @4.4.2 at the end like typescript@4.4.2)
 	For checking the version of typescript: tsc -v
