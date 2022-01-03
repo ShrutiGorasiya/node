@@ -1462,3 +1462,79 @@ app.get("/logout",function(req,res){
 
 app.listen(3333);
 
+
+===============================================================
+What is EJS in node JS?
+EJS: EJS or Embedded Javascript Templating is a templating engine used by Node.js. Template engine helps to create an HTML template with minimal code. Also, it can inject data into HTML template at the client side and produce the final HTML.09-Jul-2021
+
+
+Express is a minimal and flexible Node.js web application framework that provides a robust set of features to develop web and mobile applications. It facilitates the rapid development of Node based Web applications. Following are some of the core features of Express framework −
+
+Allows to set up middlewares to respond to HTTP Requests.
+
+Defines a routing table which is used to perform different actions based on HTTP Method and URL.
+
+Allows to dynamically render HTML Pages based on passing arguments to templates.
+=======================
+ nodemon is a command-line interface (CLI) utility developed by @rem that wraps your Node app, watches the file system, and automatically ...
+-------------------------
+express-fileupload
+Simple express middleware for uploading files.
+
+--------------------
+json-web-token
+JWT encode and decode for Node.js that can use callbacks or by returning an object {error:, value:}
+-------------------------
+
+What is the use of Popper js?
+Popper is here to help! Given an element, such as a button, and a tooltip element describing it, Popper will automatically put the tooltip in the right place near the button. It will position any UI element that "pops out" from the flow of your document and floats near a target element.
+------------------------------------------
+cors. NPM Version NPM Downloads Build Status Test Coverage. CORS is a node.js package for providing a Connect/Express middleware that can be used to enable ...
+
+
+-----------------------------
+MEAN (MongoDB, Express. js, AngularJS (or Angular), and Node. js) is a free and open-source JavaScript software stack for building dynamic web sites and web applications. ... The acronym MEAN was coined by Valeri Karpov.
+
+-------------------------------
+What Is AngularJS? AngularJS is a structural framework for dynamic web apps. It lets you use HTML as your template language and lets you extend HTML's syntax to express your application's components clearly and succinctly.
+
+----------------------------------
+
+What is Node.js?
+Node.js is an open source server environment
+Node.js is free
+Node.js runs on various platforms (Windows, Linux, Unix, Mac OS X, etc.)
+Node.js uses JavaScript on the server
+Why Node.js?
+Node.js uses asynchronous programming!
+
+A common task for a web server can be to open a file on the server and return the content to the client.
+
+Here is how PHP or ASP handles a file request:
+
+Sends the task to the computer's file system.
+Waits while the file system opens and reads the file.
+Returns the content to the client.
+Ready to handle the next request.
+Here is how Node.js handles a file request:
+
+Sends the task to the computer's file system.
+Ready to handle the next request.
+When the file system has opened and read the file, the server returns the content to the client.
+Node.js eliminates the waiting, and simply continues with the next request.
+
+Node.js runs single-threaded, non-blocking, asynchronous programming, which is very memory efficient.
+
+What Can Node.js Do?
+Node.js can generate dynamic page content
+Node.js can create, open, read, write, delete, and close files on the server
+Node.js can collect form data
+Node.js can add, delete, modify data in your database
+What is a Node.js File?
+Node.js files contain tasks that will be executed on certain events
+A typical event is someone trying to access a port on the server
+Node.js files must be initiated on the server before having any effect
+Node.js files have extension ".js"
+
+
+
