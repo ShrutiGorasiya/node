@@ -1,0 +1,84 @@
+dbo.java
+
+package com.example.cruddstatic;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.Nullable;
+
+public class dbo extends SQLiteOpenHelper {
+
+    public dbo(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
+        super(context, "empolyee", factory, 1);
+    }
+
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        sqLiteDatabase.execSQL("create table employeetb(eid integer primary key autoincrement,ename text,eage integer,egender text)");
+
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+       sqLiteDatabase.execSQL("drop table if exists employeetb");
+       onCreate(sqLiteDatabase);
+    }
+    public void add_data(String n, int ea, String eg)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        cv.put("ename", n);
+        cv.put("eage", ea);
+        cv.put("egender", eg);
+        db.insert("employeetb", null, cv);
+        db.close();
+    }
+    public void del_rec(Integer eid)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        db.delete("employeetb", "eid = ?", new
+                String[]{Integer.toString(eid)});
+        db.close();
+    }
+    public void up_rec(Integer eid,String n)
+    {
+        SQLiteDatabase db=this.getWritableDatabase();
+        ContentValues cv=new ContentValues();
+        cv.put("ename",n );
+        db.update("employeetb", cv, "eid = ?", new
+                String[]{Integer.toString(eid)});
+        db.close();
+    }
+
+}
+
+
+mainactivity.java
+
+
+package com.example.cruddstatic;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.os.Bundle;
+
+public class MainActivity extends AppCompatActivity {
+    dbo obj=new dbo(this, null, null,1);
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+//        obj.add_data("Radhika",21,"Female");
+//        obj.add_data("Shruti",20,"Female");
+        obj.up_rec(1,"Maniya");
+        obj.del_rec(2);
+
+
+    }
+
+}
